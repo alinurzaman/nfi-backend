@@ -1,0 +1,35 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Withdrawal Form</h2>
+
+            <% if (typeof errors != 'undefined') { %>
+                <div class="alert alert-danger" role="alert">
+                    <ul>
+                        <% errors.forEach(error => { %>
+                            <li>
+                                <%= error.msg %> 
+                            </li>
+                        <% }) %>
+                    </ul>    
+                </div>
+            <% } %>
+
+            <form method="post" action="/withdraw?_method=PUT">
+                <div class="mb-3">
+                  <label for="_id" class="form-label">ID</label>
+                  <input type="text" class="form-control" id="_id" name="_id" value="<%= user._id %>" readonly>  
+                </div>
+                <div class="mb-3">
+                  <label for="balance" class="form-label">Balance</label>
+                  <input type="number" class="form-control" id="balance" name="balance" min="0" step="any" value="<%= user.balance %>" readonly>  
+                </div>
+                <div class="mb-3">
+                    <label for="withdraw" class="form-label">Withdraw</label>
+                    <input type="number" class="form-control" id="withdraw" name="withdraw" min="0" step="any" value="<%= (user.withdraw) ? user.withdraw : "0" %>" required>  
+                  </div>                
+                <button type="submit" class="btn btn-primary">Submit Withdrawal</button>
+              </form>
+        </div>
+    </div>
+</div>
